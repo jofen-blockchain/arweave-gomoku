@@ -3,18 +3,26 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react-scripts": "0.7.0",
     "arweave-deploy": "1.3.0"
   },
   "dependencies": {
     "react": "^15.4.0",
     "react-dom": "^15.4.0",
+    "react-scripts": "3.0.1",
     "arweave": "1.4.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+    "start": "BROWSER=none npx react-scripts start",
+    "build": "npx react-scripts build",
+    "savekey": "npx arweave key-save ./arweave-keyfile.json",
+    "deploy": "npm run build && npx arweave deploy ./build/index.html --package",
+    "testpack": "npm run build && npx arweave package ./build/index.html output/index.html",
+    "serve": "npm run testpack && npx serve -s output"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
